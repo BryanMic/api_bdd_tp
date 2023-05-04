@@ -75,7 +75,7 @@ app.get("/garage/:id", function(request,response){
 
 app.delete('/garage/:id', (request, response) => {
     const id = parseInt(request/params/id);
-    const query = "DELETE FROM VOITURE WHERE id="+id+ ";"
+    const query = "DELETE FROM VOIURE WHERE id="+id+ ";";
     connect.query(query, function(err, result){
         if (err) throw err;
         console.log(result);
@@ -83,3 +83,15 @@ app.delete('/garage/:id', (request, response) => {
 
     })
 })
+
+
+app.put('/voiture/:id', (request, response) => {
+    const querys = "UPDATE voiture SET `marques`="+request.body.marques+",`models`="+request.body.models+",`kilomètres`="+request.body.kilomètres+" WHERE id ="+request.params.id+";";
+
+    connect.query(querys, function(err, result)
+    {
+        if(err) throw err;
+        console.log(result);
+        response.status(200).json(result);
+    })
+});
